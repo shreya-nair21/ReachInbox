@@ -11,28 +11,28 @@ interface SentTableProps {
 
 export const SentTable: React.FC<SentTableProps> = ({ emails, loading, onRefresh }) => {
   return (
-    <div className="renault-panel overflow-hidden">
+    <div className="bg-white border border-black rounded-[2px] overflow-hidden shadow-sm">
       {/* Table Header Controls */}
-      <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#0a0a0a]">
+      <div className="px-6 py-4 border-b border-black flex items-center justify-between bg-[#f7f7f7]">
         <div>
-          <h3 className="text-sm font-black text-white uppercase tracking-wider">Sent Archive</h3>
-          <p className="text-[11px] text-[#8a8a8a] uppercase tracking-wide mt-0.5">
+          <h3 className="text-sm font-black text-black uppercase tracking-wider">Sent Archive</h3>
+          <p className="text-[11px] text-[#666666] uppercase tracking-wide mt-0.5 font-semibold">
             Dispatched via Ethereal fake SMTP server with live rendered browser previews
           </p>
         </div>
         <button
           onClick={onRefresh}
-          className="p-1.5 rounded-[2px] text-white/60 hover:text-[#ffed00] hover:bg-white/5 transition"
+          className="p-1.5 rounded-[2px] text-black hover:bg-black/10 transition border border-black/20"
           title="Refresh History"
         >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-[#ffed00]' : ''}`} />
+          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-black' : ''}`} />
         </button>
       </div>
 
       {/* Table Content */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm text-slate-200">
-          <thead className="bg-[#111111] text-[11px] font-bold uppercase tracking-wider text-[#8a8a8a] border-b border-white/10">
+        <table className="w-full text-left text-sm text-black">
+          <thead className="bg-[#f0f0f0] text-[11px] font-black uppercase tracking-wider text-black border-b border-black">
             <tr>
               <th className="px-6 py-3.5">Recipient</th>
               <th className="px-6 py-3.5">Subject & Preview</th>
@@ -42,28 +42,28 @@ export const SentTable: React.FC<SentTableProps> = ({ emails, loading, onRefresh
               <th className="px-6 py-3.5 text-right">Ethereal Preview</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/8">
+          <tbody className="divide-y divide-black/10 bg-white">
             {loading && emails.length === 0 ? (
               Array.from({ length: 4 }).map((_, idx) => (
                 <tr key={idx} className="animate-pulse">
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-white/10 rounded-[2px] w-36"></div>
+                    <div className="h-4 bg-black/10 rounded-[2px] w-36"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-white/10 rounded-[2px] w-48 mb-1"></div>
-                    <div className="h-3 bg-white/5 rounded-[2px] w-32"></div>
+                    <div className="h-4 bg-black/10 rounded-[2px] w-48 mb-1"></div>
+                    <div className="h-3 bg-black/5 rounded-[2px] w-32"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-white/10 rounded-[2px] w-28"></div>
+                    <div className="h-4 bg-black/10 rounded-[2px] w-28"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-white/10 rounded-[2px] w-28"></div>
+                    <div className="h-4 bg-black/10 rounded-[2px] w-28"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-5 bg-white/10 rounded-[2px] w-16"></div>
+                    <div className="h-5 bg-black/10 rounded-[2px] w-16"></div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="h-7 bg-white/10 rounded-[2px] w-24 ml-auto"></div>
+                    <div className="h-7 bg-black/10 rounded-[2px] w-24 ml-auto"></div>
                   </td>
                 </tr>
               ))
@@ -71,11 +71,11 @@ export const SentTable: React.FC<SentTableProps> = ({ emails, loading, onRefresh
               <tr>
                 <td colSpan={6} className="px-6 py-16 text-center">
                   <div className="max-w-sm mx-auto flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-[2px] bg-[#111111] border border-white/15 flex items-center justify-center text-[#ffed00] mb-3">
+                    <div className="w-12 h-12 rounded-[2px] bg-[#f7f7f7] border border-black flex items-center justify-center text-black mb-3">
                       <Send className="w-6 h-6" />
                     </div>
-                    <h4 className="text-sm font-bold text-white uppercase tracking-wider">Archive Empty</h4>
-                    <p className="text-xs text-[#8a8a8a] mt-1 text-center">
+                    <h4 className="text-sm font-black text-black uppercase tracking-wider">Archive Empty</h4>
+                    <p className="text-xs text-[#666666] mt-1 text-center font-medium">
                       Emails dispatched by BullMQ workers will appear here with live preview links.
                     </p>
                   </div>
@@ -87,38 +87,38 @@ export const SentTable: React.FC<SentTableProps> = ({ emails, loading, onRefresh
                 const isSent = email.status === 'SENT';
 
                 return (
-                  <tr key={email.id} className="hover:bg-[#111111] transition group">
-                    <td className="px-6 py-4 font-bold text-white whitespace-nowrap">
+                  <tr key={email.id} className="hover:bg-[#fcfcfc] transition group">
+                    <td className="px-6 py-4 font-black text-black whitespace-nowrap">
                       {email.recipientEmail}
                     </td>
 
                     <td className="px-6 py-4 max-w-xs">
-                      <div className="font-bold text-white truncate">{email.subject}</div>
-                      <div className="text-xs text-[#8a8a8a] truncate">{email.body}</div>
+                      <div className="font-bold text-black truncate">{email.subject}</div>
+                      <div className="text-xs text-[#666666] truncate font-medium">{email.body}</div>
                       {email.errorMessage && (
-                        <div className="text-[11px] text-rose-400 flex items-center gap-1 mt-1 truncate">
+                        <div className="text-[11px] text-rose-600 flex items-center gap-1 mt-1 truncate font-semibold">
                           <AlertTriangle className="w-3 h-3 flex-shrink-0" />
                           <span>{email.errorMessage}</span>
                         </div>
                       )}
                     </td>
 
-                    <td className="px-6 py-4 text-xs text-white whitespace-nowrap">
+                    <td className="px-6 py-4 text-xs text-black font-semibold whitespace-nowrap">
                       {format(sentDate, 'MMM d, yyyy · hh:mm:ss a')}
                     </td>
 
-                    <td className="px-6 py-4 text-xs text-[#8a8a8a] whitespace-nowrap">
+                    <td className="px-6 py-4 text-xs text-[#666666] font-medium whitespace-nowrap">
                       {email.senderEmail}
                     </td>
 
                     <td className="px-6 py-4 whitespace-nowrap">
                       {isSent ? (
-                        <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[2px] text-[10px] font-bold bg-[#ffed00] text-black uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-[2px] text-[10px] font-black bg-[#ffed00] text-black border border-black uppercase tracking-wider">
                           <CheckCircle2 className="w-3 h-3" />
                           Delivered
                         </span>
                       ) : (
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[2px] text-[10px] font-bold bg-rose-600 text-white uppercase tracking-wider">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-[2px] text-[10px] font-black bg-rose-600 text-white uppercase tracking-wider">
                           <XCircle className="w-3 h-3" />
                           Failed
                         </span>
@@ -131,14 +131,14 @@ export const SentTable: React.FC<SentTableProps> = ({ emails, loading, onRefresh
                           href={email.etherealPreviewUrl}
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-black bg-[#ffed00] hover:bg-[#e6d200] rounded-[2px] transition uppercase tracking-wider shadow-sm"
+                          className="btn-renault-primary inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-black uppercase tracking-wider shadow-sm"
                           title="Open live rendered email in Ethereal web inbox"
                         >
                           <span>Preview</span>
                           <ExternalLink className="w-3 h-3 text-black" />
                         </a>
                       ) : (
-                        <span className="text-xs text-[#666666] italic">No preview</span>
+                        <span className="text-xs text-[#999999] italic">No preview</span>
                       )}
                     </td>
                   </tr>

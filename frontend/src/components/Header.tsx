@@ -18,12 +18,11 @@ export const Header: React.FC<HeaderProps> = ({
   slackConnected,
 }) => {
   return (
-    <header className="border-b border-white/10 bg-[#000000] sticky top-0 z-40">
+    <header className="border-b border-black bg-[#ffffff] sticky top-0 z-40 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        {/* Brand Logo - Renault Geometric Rhombus aesthetic */}
+        {/* Brand Logo - Renault Geometric Rhombus aesthetic on White */}
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-[#ffed00] flex items-center justify-center rounded-[2px] shadow-sm">
-            {/* Geometric Rhombus / Diamond */}
+          <div className="w-9 h-9 bg-[#ffed00] border border-black flex items-center justify-center rounded-[2px]">
             <svg
               viewBox="0 0 24 24"
               className="w-5 h-5 text-black fill-current stroke-black stroke-[0.5]"
@@ -34,14 +33,14 @@ export const Header: React.FC<HeaderProps> = ({
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <span className="text-base font-black tracking-tight text-white uppercase font-sans">
+              <span className="text-base font-black tracking-tight text-black uppercase font-sans">
                 ReachInbox
               </span>
-              <span className="px-1.5 py-0.2 text-[9px] font-bold bg-[#ffed00] text-black rounded-[2px] uppercase tracking-wider">
+              <span className="px-1.5 py-0.2 text-[9px] font-bold bg-[#ffed00] text-black border border-black rounded-[2px] uppercase tracking-wider">
                 Scheduler
               </span>
             </div>
-            <p className="text-[10px] text-[#8a8a8a] tracking-wider uppercase hidden sm:block font-medium">
+            <p className="text-[10px] text-[#666666] tracking-wider uppercase hidden sm:block font-semibold">
               High-Throughput Distributed Email Engine
             </p>
           </div>
@@ -54,21 +53,21 @@ export const Header: React.FC<HeaderProps> = ({
             href="/admin/queues"
             target="_blank"
             rel="noreferrer"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-[2px] text-xs font-bold text-white bg-[#111111] hover:bg-[#1f1f1f] border border-white/15 hover:border-[#ffed00] hover:text-[#ffed00] transition"
+            className="flex items-center gap-1.5 px-3 py-2 rounded-[2px] text-xs font-bold text-black bg-[#ffffff] hover:bg-[#ffed00] border border-black transition uppercase tracking-wider shadow-sm"
             title="Open Live BullMQ Queue Monitor"
           >
-            <Activity className="w-3.5 h-3.5 text-[#ffed00]" />
-            <span className="hidden md:inline uppercase tracking-wider">BullMQ Queues</span>
-            <ExternalLink className="w-3 h-3 text-white/50" />
+            <Activity className="w-3.5 h-3.5 text-black" />
+            <span className="hidden md:inline">BullMQ Queues</span>
+            <ExternalLink className="w-3 h-3 text-black/60" />
           </a>
 
           {/* Slack Integration Button */}
           <button
             onClick={onOpenSlackModal}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-[2px] text-xs font-bold transition uppercase tracking-wider ${
+            className={`flex items-center gap-1.5 px-3 py-2 rounded-[2px] text-xs font-bold transition uppercase tracking-wider border border-black shadow-sm ${
               slackConnected
                 ? 'bg-[#ffed00] text-black hover:bg-[#e6d200]'
-                : 'bg-[#111111] text-white border border-white/15 hover:border-white/40'
+                : 'bg-[#ffffff] text-black hover:bg-[#ffed00]'
             }`}
           >
             <MessageSquare className="w-3.5 h-3.5" />
@@ -80,7 +79,7 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* User Profile / Auth State */}
           {user ? (
-            <div className="flex items-center gap-3 pl-2 border-l border-white/15">
+            <div className="flex items-center gap-3 pl-2 border-l border-black/20">
               <div className="flex items-center gap-2">
                 <img
                   src={
@@ -90,20 +89,20 @@ export const Header: React.FC<HeaderProps> = ({
                     )}&background=ffed00&color=000`
                   }
                   alt={user.name || 'User'}
-                  className="w-8 h-8 rounded-[2px] border border-white/20 object-cover"
+                  className="w-8 h-8 rounded-[2px] border border-black object-cover"
                 />
                 <div className="hidden lg:block text-left">
-                  <p className="text-xs font-bold text-white leading-tight">
+                  <p className="text-xs font-bold text-black leading-tight">
                     {user.name || user.email.split('@')[0]}
                   </p>
-                  <p className="text-[10px] text-[#8a8a8a] truncate max-w-[130px]">
+                  <p className="text-[10px] text-[#666666] truncate max-w-[130px] font-medium">
                     {user.email}
                   </p>
                 </div>
               </div>
               <button
                 onClick={onLogout}
-                className="p-1.5 rounded-[2px] text-white/60 hover:text-white hover:bg-white/10 transition"
+                className="p-1.5 rounded-[2px] text-black/60 hover:text-black hover:bg-black/5 transition"
                 title="Log out"
               >
                 <LogOut className="w-4 h-4" />
@@ -112,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
           ) : (
             <button
               onClick={onOpenLoginModal}
-              className="px-4 py-2 rounded-[2px] text-xs font-bold bg-[#ffed00] hover:bg-[#e6d200] text-black uppercase tracking-wider transition"
+              className="btn-renault-primary px-4 py-2 text-xs font-bold uppercase tracking-wider"
             >
               Sign In
             </button>

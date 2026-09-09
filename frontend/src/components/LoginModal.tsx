@@ -51,54 +51,53 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <div className="w-full max-w-md bg-[#000000] border border-white/20 rounded-[2px] shadow-2xl overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+      <div className="w-full max-w-md bg-[#ffffff] border-2 border-black rounded-[2px] shadow-2xl overflow-hidden">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#0a0a0a]">
+        <div className="px-6 py-4 border-b border-black flex items-center justify-between bg-[#f7f7f7]">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-[2px] bg-[#ffed00] flex items-center justify-center text-black">
+            <div className="w-8 h-8 rounded-[2px] bg-[#ffed00] border border-black flex items-center justify-center text-black">
               <Mail className="w-4 h-4 text-black" />
             </div>
-            <span className="text-sm font-black text-white uppercase tracking-wider">
+            <span className="text-sm font-black text-black uppercase tracking-wider">
               ReachInbox Access
             </span>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-[2px] text-white/60 hover:text-white hover:bg-white/10 transition"
+            className="p-1 rounded-[2px] text-black hover:bg-black/10 transition border border-black/20"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Body */}
-        <div className="p-6 space-y-5">
+        <div className="p-6 space-y-5 bg-white">
           <div className="text-center">
-            <h3 className="text-lg font-black text-white uppercase tracking-tight">
+            <h3 className="text-lg font-black text-black uppercase tracking-tight">
               Sign In to Dashboard
             </h3>
-            <p className="text-xs text-[#8a8a8a] mt-1">
+            <p className="text-xs text-[#666666] mt-1 font-medium">
               Production-grade distributed email scheduler with BullMQ, Redis, and Ethereal SMTP
             </p>
           </div>
 
           {errorMsg && (
-            <div className="p-3 rounded-[2px] bg-rose-950/50 border border-rose-600/40 text-rose-300 text-xs">
+            <div className="p-3 rounded-[2px] bg-rose-50 border border-rose-600 text-rose-700 text-xs font-bold uppercase">
               {errorMsg}
             </div>
           )}
 
           {/* Real Google OAuth Button */}
           <div className="space-y-2">
-            <label className="block text-[10px] font-bold text-[#8a8a8a] text-center uppercase tracking-wider">
-              Google OAuth Authentication (Required)
+            <label className="block text-[10px] font-black text-[#666666] text-center uppercase tracking-wider">
+              Google OAuth Authentication
             </label>
             <div className="flex justify-center pt-1">
               <GoogleLogin
                 onSuccess={handleGoogleSuccess}
                 onError={() => setErrorMsg('Google OAuth login failed or cancelled.')}
                 useOneTap={false}
-                theme="filled_black"
                 shape="rectangular"
                 size="large"
               />
@@ -106,11 +105,11 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
           </div>
 
           <div className="relative flex py-2 items-center">
-            <div className="flex-grow border-t border-white/10"></div>
-            <span className="flex-shrink mx-3 text-[10px] text-[#8a8a8a] font-bold uppercase tracking-wider">
+            <div className="flex-grow border-t border-black/20"></div>
+            <span className="flex-shrink mx-3 text-[10px] text-[#666666] font-black uppercase tracking-wider">
               Or Rapid Evaluator Access
             </span>
-            <div className="flex-grow border-t border-white/10"></div>
+            <div className="flex-grow border-t border-black/20"></div>
           </div>
 
           {/* Evaluator Profiles */}
@@ -118,25 +117,25 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, onLogin
             <button
               onClick={() => handleDemoLogin('mitrajit@reachinbox.ai', 'Mitrajit (Evaluator)')}
               disabled={loading}
-              className="w-full flex items-center justify-between px-4 py-3 rounded-[2px] bg-[#111111] hover:bg-[#1a1a1a] border border-white/15 hover:border-[#ffed00] text-xs font-bold uppercase tracking-wider text-white transition group"
+              className="w-full flex items-center justify-between px-4 py-3 rounded-[2px] bg-white hover:bg-[#fffde6] border-2 border-black text-xs font-black uppercase tracking-wider text-black transition group shadow-sm"
             >
               <div className="flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-[#ffed00]" />
+                <Sparkles className="w-3.5 h-3.5 text-black" />
                 <span>Continue as Evaluator: Mitrajit</span>
               </div>
-              <ArrowRight className="w-3.5 h-3.5 text-[#8a8a8a] group-hover:text-[#ffed00] group-hover:translate-x-0.5 transition" />
+              <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition" />
             </button>
 
             <button
               onClick={() => handleDemoLogin('yadav036@reachinbox.ai', 'Yadav036 (Evaluator)')}
               disabled={loading}
-              className="w-full flex items-center justify-between px-4 py-3 rounded-[2px] bg-[#111111] hover:bg-[#1a1a1a] border border-white/15 hover:border-[#ffed00] text-xs font-bold uppercase tracking-wider text-white transition group"
+              className="w-full flex items-center justify-between px-4 py-3 rounded-[2px] bg-white hover:bg-[#fffde6] border-2 border-black text-xs font-black uppercase tracking-wider text-black transition group shadow-sm"
             >
               <div className="flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5 text-[#ffed00]" />
+                <Sparkles className="w-3.5 h-3.5 text-black" />
                 <span>Continue as Evaluator: Yadav036</span>
               </div>
-              <ArrowRight className="w-3.5 h-3.5 text-[#8a8a8a] group-hover:text-[#ffed00] group-hover:translate-x-0.5 transition" />
+              <ArrowRight className="w-3.5 h-3.5 text-black group-hover:translate-x-1 transition" />
             </button>
           </div>
         </div>
