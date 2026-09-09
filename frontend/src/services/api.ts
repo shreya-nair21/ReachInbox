@@ -36,6 +36,22 @@ export const authApi = {
     return res.data;
   },
 
+  async signup(email: string, password?: string, name?: string) {
+    const res = await api.post<{ success: boolean; data: { token: string; user: User } }>(
+      '/auth/signup',
+      { email, password, name }
+    );
+    return res.data;
+  },
+
+  async login(email: string, password?: string) {
+    const res = await api.post<{ success: boolean; data: { token: string; user: User } }>(
+      '/auth/login',
+      { email, password }
+    );
+    return res.data;
+  },
+
   async getMe() {
     const res = await api.get<{ success: boolean; data: { user: User } }>('/auth/me');
     return res.data;

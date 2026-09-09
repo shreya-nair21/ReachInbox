@@ -7,6 +7,7 @@ interface HeaderProps {
   onLogout: () => void;
   onOpenSlackModal: () => void;
   onOpenLoginModal: () => void;
+  onNavigateToLanding?: () => void;
   slackConnected: boolean;
 }
 
@@ -15,14 +16,19 @@ export const Header: React.FC<HeaderProps> = ({
   onLogout,
   onOpenSlackModal,
   onOpenLoginModal,
+  onNavigateToLanding,
   slackConnected,
 }) => {
   return (
     <header className="border-b border-black bg-[#ffffff] sticky top-0 z-40 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Brand Logo - Renault Geometric Rhombus aesthetic on White */}
-        <div className="flex items-center gap-3">
-          <div className="w-9 h-9 bg-[#ffed00] border border-black flex items-center justify-center rounded-[2px]">
+        <div
+          onClick={onNavigateToLanding}
+          className={`flex items-center gap-3 ${onNavigateToLanding ? 'cursor-pointer group' : ''}`}
+          title={onNavigateToLanding ? 'Return to Landing Page' : undefined}
+        >
+          <div className="w-9 h-9 bg-[#ffed00] border border-black flex items-center justify-center rounded-[2px] transition group-hover:scale-105">
             <svg
               viewBox="0 0 24 24"
               className="w-5 h-5 text-black fill-current stroke-black stroke-[0.5]"
@@ -48,6 +54,17 @@ export const Header: React.FC<HeaderProps> = ({
 
         {/* Actions & User Section */}
         <div className="flex items-center gap-2.5">
+          {/* Back to Landing Page Link */}
+          {onNavigateToLanding && (
+            <button
+              onClick={onNavigateToLanding}
+              className="px-3 py-2 rounded-[2px] text-xs font-black uppercase tracking-wider text-black hover:bg-neutral-100 border border-black/30 transition"
+              title="Return to Landing Page & Sign In / Sign Up"
+            >
+              Landing Page
+            </button>
+          )}
+
           {/* BullMQ Live Dashboard Link */}
           <a
             href="/admin/queues"

@@ -13,6 +13,7 @@ import { SentTable } from './components/SentTable';
 import { ComposeModal } from './components/ComposeModal';
 import { SlackModal } from './components/SlackModal';
 import { LoginModal } from './components/LoginModal';
+import { LandingPage } from './components/LandingPage';
 import { authApi, emailApi, slackApi } from './services/api';
 import { DashboardStats, EmailSchedule, User, ComposeEmailPayload } from './types';
 
@@ -20,6 +21,13 @@ export const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [stats, setStats] = useState<DashboardStats | null>(null);
   const [statsLoading, setStatsLoading] = useState(false);
+
+  // View Routing: 'landing' | 'dashboard'
+  const [currentView, setCurrentView] = useState<'landing' | 'dashboard'>(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('view') === 'dashboard') return 'dashboard';
+    return localStorage.getItem('reachinbox_token') ? 'dashboard' : 'landing';
+  });
 
   // Tabs: 'scheduled' | 'sent'
   const [activeTab, setActiveTab] = useState<'scheduled' | 'sent'>('scheduled');
@@ -205,8 +213,28 @@ export const App: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem('reachinbox_token');
     setUser(null);
+    setCurrentView('landing');
     setBannerMsg({ type: 'success', text: 'You have been logged out.' });
   };
+
+  // If in Landing View, render the Dedicated Renault Landing Page
+  if (currentView === 'landing') {
+    return (
+      <LandingPage
+        onLoginSuccess={(loggedUser) => {
+          setUser(loggedUser);
+          setCurrentView('dashboard');
+          setBannerMsg({
+            type: 'success',
+            text: `Welcome, ${loggedUser.name || loggedUser.email}! You are now in the live console.`,
+          });
+          fetchStats();
+          fetchEmails();
+        }}
+        onExploreDashboard={() => setCurrentView('dashboard')}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#ffffff] text-black flex flex-col font-sans">
@@ -216,6 +244,7 @@ export const App: React.FC = () => {
         onLogout={handleLogout}
         onOpenSlackModal={() => setIsSlackOpen(true)}
         onOpenLoginModal={() => setIsLoginOpen(true)}
+        onNavigateToLanding={() => setCurrentView('landing')}
         slackConnected={slackConnected}
       />
 
