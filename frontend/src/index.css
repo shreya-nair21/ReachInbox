@@ -4,51 +4,67 @@
 
 @layer base {
   body {
-    @apply bg-[#090d16] text-slate-100 antialiased overflow-x-hidden;
+    @apply bg-[#000000] text-[#ffffff] antialiased overflow-x-hidden;
+    font-family: 'Inter Tight', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
-/* Custom scrollbars */
+/* Renault Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #333333;
+  border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #ffed00;
 }
 
-/* Glassmorphism */
-.glass-panel {
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+/* Renault Tile & Card Surface Tokens */
+.renault-card {
+  background: #111111;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 2px;
 }
 
-.glass-card {
-  background: rgba(30, 41, 59, 0.5);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+.renault-panel {
+  background: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 2px;
 }
 
-/* Subtle glow animations */
-@keyframes pulseGlow {
-  0%, 100% {
-    opacity: 0.4;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.03);
-  }
+/* Renault Primary Button */
+.btn-renault-primary {
+  background-color: #ffed00;
+  color: #000000;
+  font-weight: 700;
+  border-radius: 2px;
+  letter-spacing: 0.14px;
+  transition: background-color 0.15s ease-in-out, transform 0.1s ease;
+}
+.btn-renault-primary:hover {
+  background-color: #e6d200;
+}
+.btn-renault-primary:active {
+  transform: scale(0.99);
 }
 
-.animate-pulse-glow {
-  animation: pulseGlow 4s infinite ease-in-out;
+/* Renault Secondary Outline Button */
+.btn-renault-outline {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  font-weight: 700;
+  border-radius: 2px;
+  letter-spacing: 0.14px;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.btn-renault-outline:hover {
+  border-color: #ffed00;
+  color: #ffed00;
 }

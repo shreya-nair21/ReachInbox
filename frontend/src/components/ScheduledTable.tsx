@@ -1,6 +1,6 @@
 import React from 'react';
 import { format, formatDistanceToNow } from 'date-fns';
-import { CalendarClock, XCircle, RefreshCw, AlertCircle, Clock } from 'lucide-react';
+import { CalendarClock, RefreshCw, Clock } from 'lucide-react';
 import { EmailSchedule } from '../types';
 
 interface ScheduledTableProps {
@@ -20,54 +20,54 @@ export const ScheduledTable: React.FC<ScheduledTableProps> = ({
     switch (status) {
       case 'PROCESSING':
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
-            Sending...
+          <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-[2px] text-[10px] font-bold bg-[#ffed00] text-black uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 rounded-full bg-black animate-ping"></span>
+            Sending
           </span>
         );
       case 'RESCHEDULED':
         return (
           <span
-            className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-violet-500/10 text-violet-400 border border-violet-500/20"
+            className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[2px] text-[10px] font-bold bg-[#181818] text-[#ffed00] border border-[#ffed00]/40 uppercase tracking-wider"
             title={`Hourly rate limit exceeded. Rescheduled ${rescheduleCount} time(s).`}
           >
             <Clock className="w-3 h-3" />
-            Rate Rescheduled ({rescheduleCount}x)
+            Throttled ({rescheduleCount}x)
           </span>
         );
       default:
         return (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-500/10 text-brand-400 border border-brand-500/20">
-            <CalendarClock className="w-3 h-3" />
-            Scheduled
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-[2px] text-[10px] font-bold bg-white/10 text-white border border-white/15 uppercase tracking-wider">
+            <CalendarClock className="w-3 h-3 text-[#ffed00]" />
+            Queued
           </span>
         );
     }
   };
 
   return (
-    <div className="glass-panel rounded-2xl overflow-hidden border border-slate-800">
+    <div className="renault-panel overflow-hidden">
       {/* Table Header Controls */}
-      <div className="px-6 py-4 border-b border-slate-800 flex items-center justify-between">
+      <div className="px-6 py-4 border-b border-white/10 flex items-center justify-between bg-[#0a0a0a]">
         <div>
-          <h3 className="text-sm font-semibold text-slate-200">Scheduled Queue</h3>
-          <p className="text-xs text-slate-400">
-            Emails queued in BullMQ waiting for their scheduled delivery window
+          <h3 className="text-sm font-black text-white uppercase tracking-wider">Scheduled Queue</h3>
+          <p className="text-[11px] text-[#8a8a8a] uppercase tracking-wide mt-0.5">
+            Jobs queued in BullMQ waiting for target delivery window
           </p>
         </div>
         <button
           onClick={onRefresh}
-          className="p-1.5 rounded-lg text-slate-400 hover:text-slate-200 hover:bg-slate-800 transition"
+          className="p-1.5 rounded-[2px] text-white/60 hover:text-[#ffed00] hover:bg-white/5 transition"
           title="Refresh Queue"
         >
-          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-brand-400' : ''}`} />
+          <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin text-[#ffed00]' : ''}`} />
         </button>
       </div>
 
       {/* Table Content */}
       <div className="overflow-x-auto">
-        <table className="w-full text-left text-sm text-slate-300">
-          <thead className="bg-slate-900/60 text-xs font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-800">
+        <table className="w-full text-left text-sm text-slate-200">
+          <thead className="bg-[#111111] text-[11px] font-bold uppercase tracking-wider text-[#8a8a8a] border-b border-white/10">
             <tr>
               <th className="px-6 py-3.5">Recipient</th>
               <th className="px-6 py-3.5">Subject & Preview</th>
@@ -77,44 +77,41 @@ export const ScheduledTable: React.FC<ScheduledTableProps> = ({
               <th className="px-6 py-3.5 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-slate-800/60">
+          <tbody className="divide-y divide-white/8">
             {loading && emails.length === 0 ? (
-              // Loading Skeletons
               Array.from({ length: 4 }).map((_, idx) => (
                 <tr key={idx} className="animate-pulse">
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-slate-800 rounded w-36"></div>
+                    <div className="h-4 bg-white/10 rounded-[2px] w-36"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-slate-800 rounded w-48 mb-1"></div>
-                    <div className="h-3 bg-slate-800/50 rounded w-32"></div>
+                    <div className="h-4 bg-white/10 rounded-[2px] w-48 mb-1"></div>
+                    <div className="h-3 bg-white/5 rounded-[2px] w-32"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-slate-800 rounded w-28"></div>
+                    <div className="h-4 bg-white/10 rounded-[2px] w-28"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 bg-slate-800 rounded w-28"></div>
+                    <div className="h-4 bg-white/10 rounded-[2px] w-28"></div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-6 bg-slate-800 rounded-full w-20"></div>
+                    <div className="h-5 bg-white/10 rounded-[2px] w-16"></div>
                   </td>
                   <td className="px-6 py-4 text-right">
-                    <div className="h-7 bg-slate-800 rounded w-16 ml-auto"></div>
+                    <div className="h-6 bg-white/10 rounded-[2px] w-14 ml-auto"></div>
                   </td>
                 </tr>
               ))
             ) : emails.length === 0 ? (
-              // Empty State
               <tr>
-                <td colSpan={6} className="px-6 py-14 text-center">
+                <td colSpan={6} className="px-6 py-16 text-center">
                   <div className="max-w-sm mx-auto flex flex-col items-center">
-                    <div className="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-slate-400 mb-3">
+                    <div className="w-12 h-12 rounded-[2px] bg-[#111111] border border-white/15 flex items-center justify-center text-[#ffed00] mb-3">
                       <CalendarClock className="w-6 h-6" />
                     </div>
-                    <h4 className="text-sm font-semibold text-slate-200">No Scheduled Emails</h4>
-                    <p className="text-xs text-slate-400 mt-1 text-center">
-                      Your scheduled queue is currently empty. Click "Compose New Email" to upload
-                      leads and schedule a campaign!
+                    <h4 className="text-sm font-bold text-white uppercase tracking-wider">Queue Empty</h4>
+                    <p className="text-xs text-[#8a8a8a] mt-1 text-center">
+                      No emails currently scheduled. Use "Compose New Email" to schedule a campaign.
                     </p>
                   </div>
                 </td>
@@ -125,44 +122,38 @@ export const ScheduledTable: React.FC<ScheduledTableProps> = ({
                 const isPast = schedDate.getTime() <= Date.now();
 
                 return (
-                  <tr key={email.id} className="hover:bg-slate-800/40 transition group">
-                    {/* Recipient */}
-                    <td className="px-6 py-4 font-medium text-slate-100 whitespace-nowrap">
+                  <tr key={email.id} className="hover:bg-[#111111] transition group">
+                    <td className="px-6 py-4 font-bold text-white whitespace-nowrap">
                       {email.recipientEmail}
                     </td>
 
-                    {/* Subject */}
                     <td className="px-6 py-4 max-w-xs">
-                      <div className="font-medium text-slate-200 truncate">{email.subject}</div>
-                      <div className="text-xs text-slate-400 truncate">{email.body}</div>
+                      <div className="font-bold text-white truncate">{email.subject}</div>
+                      <div className="text-xs text-[#8a8a8a] truncate">{email.body}</div>
                     </td>
 
-                    {/* Scheduled Delivery */}
                     <td className="px-6 py-4 whitespace-nowrap">
-                      <div className="text-xs font-medium text-slate-200">
+                      <div className="text-xs font-bold text-white">
                         {format(schedDate, 'MMM d, yyyy · hh:mm:ss a')}
                       </div>
-                      <div className="text-[11px] text-brand-400 flex items-center gap-1 mt-0.5">
+                      <div className="text-[10px] text-[#ffed00] font-semibold flex items-center gap-1 mt-0.5 uppercase tracking-wide">
                         <Clock className="w-3 h-3" />
-                        {isPast ? 'Processing shortly' : formatDistanceToNow(schedDate, { addSuffix: true })}
+                        {isPast ? 'Executing now' : formatDistanceToNow(schedDate, { addSuffix: true })}
                       </div>
                     </td>
 
-                    {/* Sender */}
-                    <td className="px-6 py-4 text-xs text-slate-400 whitespace-nowrap">
+                    <td className="px-6 py-4 text-xs text-[#8a8a8a] whitespace-nowrap">
                       {email.senderEmail}
                     </td>
 
-                    {/* Status */}
                     <td className="px-6 py-4 whitespace-nowrap">
                       {getStatusBadge(email.status, email.rateLimitRescheduleCount)}
                     </td>
 
-                    {/* Action */}
                     <td className="px-6 py-4 text-right whitespace-nowrap">
                       <button
                         onClick={() => onCancel(email.id)}
-                        className="px-2.5 py-1 text-xs font-medium text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-lg transition border border-transparent hover:border-rose-500/20"
+                        className="px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider text-rose-400 hover:text-white hover:bg-rose-600/30 rounded-[2px] transition border border-rose-500/20"
                         title="Cancel this scheduled send"
                       >
                         Cancel

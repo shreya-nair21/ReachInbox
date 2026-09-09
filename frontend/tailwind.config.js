@@ -8,33 +8,41 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: {
-          50: '#eef2ff',
-          100: '#e0e7ff',
-          200: '#c7d2fe',
-          300: '#a5b4fc',
-          400: '#818cf8',
-          500: '#6366f1',
-          600: '#4f46e5',
-          700: '#4338ca',
-          800: '#3730a3',
-          900: '#312e81',
-          950: '#1e1b4b',
+        // Renault Sunlight Yellow & Monochromes
+        renault: {
+          yellow: '#ffed00',
+          'yellow-deep': '#e6d200',
+          ink: '#000000',
+          dark: '#000000',
+          deep: '#111111',
+          card: '#161616',
+          charcoal: '#222222',
+          mute: '#666666',
+          ash: '#8a8a8a',
+          stone: '#c4c4c4',
+          hairline: 'rgba(255, 255, 255, 0.14)',
+          'hairline-subtle': 'rgba(255, 255, 255, 0.08)',
         },
-        surface: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          800: '#1e293b',
-          900: '#0f172a',
-          950: '#090d16',
-        }
+        brand: {
+          500: '#ffed00',
+          600: '#e6d200',
+        },
       },
       fontFamily: {
-        sans: ['Inter', 'Outfit', 'sans-serif'],
+        sans: ['"Inter Tight"', 'Manrope', 'sans-serif'],
+        display: ['"Inter Tight"', 'sans-serif'],
       },
-      boxShadow: {
-        glow: '0 0 25px -5px rgba(99, 102, 241, 0.3)',
-      }
+      borderRadius: {
+        none: '0px',
+        xs: '2px',
+        sm: '3px',
+        md: '4px',
+        pill: '46px',
+        full: '9999px',
+      },
+      lineHeight: {
+        tightest: '0.95',
+      },
     },
   },
   plugins: [],

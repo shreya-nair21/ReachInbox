@@ -5,10 +5,6 @@ import {
   CalendarClock,
   Send,
   RefreshCw,
-  Sparkles,
-  AlertCircle,
-  Database,
-  SlidersHorizontal,
 } from 'lucide-react';
 import { Header } from './components/Header';
 import { StatsBar } from './components/StatsBar';
@@ -213,7 +209,7 @@ export const App: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col font-sans">
+    <div className="min-h-screen bg-[#000000] text-white flex flex-col font-sans">
       {/* Top Header */}
       <Header
         user={user}
@@ -228,16 +224,16 @@ export const App: React.FC = () => {
         {/* Banner Alert */}
         {bannerMsg && (
           <div
-            className={`mb-6 p-4 rounded-xl border flex items-center justify-between text-xs font-medium ${
+            className={`mb-6 p-4 rounded-[2px] border flex items-center justify-between text-xs font-black uppercase tracking-wider ${
               bannerMsg.type === 'success'
-                ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300'
-                : 'bg-rose-500/10 border-rose-500/20 text-rose-300'
+                ? 'bg-[#111111] border-[#ffed00]/50 text-[#ffed00]'
+                : 'bg-rose-950/70 border-rose-600/50 text-rose-300'
             }`}
           >
             <span>{bannerMsg.text}</span>
             <button
               onClick={() => setBannerMsg(null)}
-              className="text-slate-400 hover:text-slate-200 transition text-sm font-bold"
+              className="text-white/60 hover:text-white transition text-sm font-bold"
             >
               ✕
             </button>
@@ -249,22 +245,24 @@ export const App: React.FC = () => {
 
         {/* Dashboard Action Header & Controls */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
-          {/* Tabs */}
-          <div className="flex items-center gap-1 p-1 bg-slate-900/90 border border-slate-800 rounded-xl">
+          {/* Tabs - Renault Sharp High-Contrast Switching */}
+          <div className="flex items-center gap-1 p-1 bg-[#111111] border border-white/15 rounded-[2px]">
             <button
               onClick={() => {
                 setActiveTab('scheduled');
                 setSearchQuery('');
               }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-[2px] text-xs font-black uppercase tracking-wider transition ${
                 activeTab === 'scheduled' && !searchQuery
-                  ? 'bg-brand-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                  ? 'bg-[#ffed00] text-black shadow-sm'
+                  : 'text-[#8a8a8a] hover:text-white hover:bg-white/5'
               }`}
             >
               <CalendarClock className="w-3.5 h-3.5" />
-              <span>Scheduled Emails</span>
-              <span className="px-1.5 py-0.5 text-[10px] rounded-full bg-black/20">
+              <span>Scheduled</span>
+              <span className={`px-1.5 py-0.2 text-[10px] font-bold rounded-[2px] ${
+                activeTab === 'scheduled' && !searchQuery ? 'bg-black text-[#ffed00]' : 'bg-white/10 text-white'
+              }`}>
                 {stats?.scheduled ?? 0}
               </span>
             </button>
@@ -274,15 +272,17 @@ export const App: React.FC = () => {
                 setActiveTab('sent');
                 setSearchQuery('');
               }}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold transition ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-[2px] text-xs font-black uppercase tracking-wider transition ${
                 activeTab === 'sent' && !searchQuery
-                  ? 'bg-brand-600 text-white shadow-md'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                  ? 'bg-[#ffed00] text-black shadow-sm'
+                  : 'text-[#8a8a8a] hover:text-white hover:bg-white/5'
               }`}
             >
               <Send className="w-3.5 h-3.5" />
-              <span>Sent Emails</span>
-              <span className="px-1.5 py-0.5 text-[10px] rounded-full bg-black/20">
+              <span>Sent History</span>
+              <span className={`px-1.5 py-0.2 text-[10px] font-bold rounded-[2px] ${
+                activeTab === 'sent' && !searchQuery ? 'bg-black text-[#ffed00]' : 'bg-white/10 text-white'
+              }`}>
                 {stats?.sent ?? 0}
               </span>
             </button>
@@ -292,51 +292,50 @@ export const App: React.FC = () => {
           <div className="flex items-center gap-3">
             {/* Search Input (Elasticsearch backend) */}
             <div className="relative flex-1 sm:w-72">
-              <Search className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Search className="w-4 h-4 text-[#8a8a8a] absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
-                placeholder="Search subject, recipient, body..."
+                placeholder="Search subject, lead, body..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full bg-slate-900/90 border border-slate-800 focus:border-brand-500 rounded-xl pl-9 pr-4 py-2 text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none transition"
+                className="w-full bg-[#111111] border border-white/15 focus:border-[#ffed00] rounded-[2px] pl-9 pr-4 py-2 text-xs text-white placeholder:text-[#666666] focus:outline-none transition font-sans"
               />
               {isSearching && (
-                <RefreshCw className="w-3.5 h-3.5 text-brand-400 animate-spin absolute right-3 top-1/2 -translate-y-1/2" />
+                <RefreshCw className="w-3.5 h-3.5 text-[#ffed00] animate-spin absolute right-3 top-1/2 -translate-y-1/2" />
               )}
             </div>
 
-            {/* Primary Compose New Email Button */}
+            {/* Primary Compose New Email Button - Sunlight Yellow CTA */}
             <button
               onClick={() => setIsComposeOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white text-xs font-semibold shadow-lg shadow-brand-500/25 hover:shadow-brand-500/40 transition whitespace-nowrap"
+              className="btn-renault-primary flex items-center gap-2 px-5 py-2.5 text-xs font-black uppercase tracking-wider whitespace-nowrap shadow-sm"
             >
-              <Plus className="w-4 h-4" />
-              <span>Compose New Email</span>
+              <Plus className="w-4 h-4 text-black stroke-[3]" />
+              <span>Compose Email</span>
             </button>
           </div>
         </div>
 
         {/* Search Mode or Tab Tables */}
         {searchQuery ? (
-          /* Search Results View */
           <div className="space-y-3">
-            <div className="flex items-center justify-between text-xs text-slate-400 px-1">
+            <div className="flex items-center justify-between text-xs text-[#8a8a8a] px-1 uppercase font-bold">
               <div className="flex items-center gap-2">
                 <span>
-                  Found <strong>{searchResults.length}</strong> result
+                  Found <strong>{searchResults.length}</strong> record
                   {searchResults.length === 1 ? '' : 's'} for "{searchQuery}"
                 </span>
                 {searchSource && (
-                  <span className="px-2 py-0.5 rounded-full text-[10px] bg-slate-800 text-cyan-400 border border-slate-700">
+                  <span className="px-2 py-0.5 rounded-[2px] text-[10px] bg-[#111111] text-[#ffed00] border border-white/15 uppercase font-bold">
                     Engine: {searchSource === 'elasticsearch' ? 'Elasticsearch' : 'SQL Fallback'}
                   </span>
                 )}
               </div>
               <button
                 onClick={() => setSearchQuery('')}
-                className="text-brand-400 hover:text-brand-300 font-medium"
+                className="text-[#ffed00] hover:underline font-bold uppercase tracking-wider"
               >
-                Clear Search
+                Clear
               </button>
             </div>
             {searchResults.length > 0 && searchResults[0].status === 'SENT' ? (
@@ -355,7 +354,6 @@ export const App: React.FC = () => {
             )}
           </div>
         ) : activeTab === 'scheduled' ? (
-          /* Scheduled Tab */
           <ScheduledTable
             emails={scheduledEmails}
             loading={tableLoading}
@@ -366,7 +364,6 @@ export const App: React.FC = () => {
             }}
           />
         ) : (
-          /* Sent Tab */
           <SentTable
             emails={sentEmails}
             loading={tableLoading}
