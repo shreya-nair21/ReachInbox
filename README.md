@@ -50,6 +50,3 @@ npm run dev     # Starts Backend (:5000) and Frontend (:5173)
 - `GET /api/emails/search?q=` — Full-text search
 - `POST /api/slack/test` — Test rate-limit alert
 
-## Demo Video
-
-An end-to-end recording demonstrating campaign scheduling, worker queueing, rate limiting, and live Ethereal delivery is included at `ReachInbox_Demo_Walkthrough.mp4`.
