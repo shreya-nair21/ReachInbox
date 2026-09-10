@@ -12,6 +12,9 @@
     "prisma:push": "prisma db push",
     "prisma:studio": "prisma studio"
   },
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "dependencies": {
     "@bull-board/api": "^6.0.4",
     "@bull-board/express": "^6.0.4",
