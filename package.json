@@ -4,6 +4,7 @@
   "description": "Production-grade Full-stack Email Job Scheduler with BullMQ, Redis, MySQL, Ethereal, Elasticsearch, and React",
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "redis": "start-redis.bat",
     "dev:backend": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
