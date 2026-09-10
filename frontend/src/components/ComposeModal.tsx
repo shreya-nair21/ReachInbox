@@ -148,35 +148,35 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto">
-      <div className="w-full max-w-2xl bg-[#ffffff] border-2 border-black rounded-[2px] shadow-2xl overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-neutral-950/60 backdrop-blur-sm overflow-y-auto">
+      <div className="w-full max-w-2xl bg-white border border-neutral-200/90 rounded-2xl shadow-2xl overflow-hidden my-8">
         {/* Header */}
-        <div className="px-6 py-4 border-b border-black flex items-center justify-between bg-[#f7f7f7]">
+        <div className="px-6 py-4 border-b border-neutral-200 flex items-center justify-between bg-neutral-50/60">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-[2px] bg-[#ffed00] border border-black flex items-center justify-center text-black">
-              <Mail className="w-4 h-4 text-black" />
+            <div className="w-8 h-8 rounded-lg bg-amber-400 border border-amber-500/20 flex items-center justify-center text-neutral-950 shadow-sm">
+              <Mail className="w-4 h-4 text-neutral-950" />
             </div>
             <div>
-              <h2 className="text-base font-black text-black uppercase tracking-wider">
+              <h2 className="text-base font-bold text-neutral-900 uppercase tracking-wider">
                 Compose Email Campaign
               </h2>
-              <p className="text-[10px] text-[#666666] uppercase tracking-wide font-semibold">
+              <p className="text-[10px] text-neutral-500 uppercase tracking-wide font-semibold">
                 Distributed BullMQ Dispatch with Rate-Limit Resilience
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-[2px] text-black hover:bg-black/10 transition border border-black/20"
+            className="p-1.5 rounded-lg text-neutral-500 hover:text-neutral-900 hover:bg-neutral-100 transition border border-neutral-200"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-5 bg-white">
           {errorMsg && (
-            <div className="p-3 rounded-[2px] bg-rose-50 border border-rose-600 text-rose-700 text-xs font-bold uppercase flex items-center gap-2">
+            <div className="p-3 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs font-semibold flex items-center gap-2">
               <AlertCircle className="w-4 h-4 flex-shrink-0" />
               <span>{errorMsg}</span>
             </div>
@@ -185,13 +185,13 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
           {/* Sender & Manual Add */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <label className="block text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1.5">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                 From (Sender Email)
               </label>
               <select
                 value={senderEmail}
                 onChange={(e) => setSenderEmail(e.target.value)}
-                className="w-full bg-[#ffffff] border border-black rounded-[2px] px-3 py-2 text-xs text-black focus:outline-none focus:bg-[#fffde6] transition uppercase font-sans font-bold"
+                className="w-full bg-white border border-neutral-200 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/5 rounded-lg px-3 py-2 text-xs text-neutral-900 focus:outline-none transition uppercase font-sans font-bold shadow-sm"
               >
                 <option value="outreach@reachinbox.ai">outreach@reachinbox.ai</option>
                 <option value="growth@outboxlabs.com">growth@outboxlabs.com</option>
@@ -201,7 +201,7 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
             </div>
 
             <div>
-              <label className="block text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1.5">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                 Add Single Recipient
               </label>
               <div className="flex gap-2">
@@ -216,12 +216,12 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                       handleManualAdd();
                     }
                   }}
-                  className="flex-1 bg-[#ffffff] border border-black rounded-[2px] px-3 py-2 text-xs text-black focus:outline-none focus:bg-[#fffde6] placeholder:text-[#999999] font-medium"
+                  className="flex-1 bg-white border border-neutral-200 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/5 rounded-lg px-3 py-2 text-xs text-neutral-900 focus:outline-none placeholder:text-neutral-400 font-medium shadow-sm"
                 />
                 <button
                   type="button"
                   onClick={handleManualAdd}
-                  className="btn-renault-dark px-3 py-2 text-xs font-black uppercase"
+                  className="btn-renault-dark px-3.5 py-2 text-xs font-bold uppercase rounded-lg"
                 >
                   Add
                 </button>
@@ -231,14 +231,14 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
 
           {/* Lead CSV/Text Dropzone */}
           <div>
-            <label className="block text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1.5">
+            <label className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
               Upload Lead List (CSV / TXT)
             </label>
             <div
               onDragOver={(e) => e.preventDefault()}
               onDrop={handleDrop}
               onClick={() => fileInputRef.current?.click()}
-              className="border-2 border-dashed border-black/30 hover:border-black bg-[#f9f9f9] rounded-[2px] p-5 text-center cursor-pointer transition group hover:bg-[#f2f2f2]"
+              className="border-2 border-dashed border-neutral-300 hover:border-neutral-400 bg-neutral-50/50 rounded-xl p-5 text-center cursor-pointer transition group hover:bg-neutral-100/50"
             >
               <input
                 ref={fileInputRef}
@@ -251,30 +251,30 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                   }
                 }}
               />
-              <UploadCloud className="w-8 h-8 text-black group-hover:scale-105 mx-auto transition mb-1.5" />
-              <p className="text-xs font-black text-black uppercase tracking-wider">
+              <UploadCloud className="w-8 h-8 text-neutral-600 group-hover:text-neutral-900 group-hover:scale-105 mx-auto transition mb-1.5" />
+              <p className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
                 Click or Drop Leads File Here
               </p>
-              <p className="text-[10px] text-[#666666] uppercase tracking-wide mt-0.5 font-semibold">
+              <p className="text-[10px] text-neutral-500 uppercase tracking-wide mt-0.5 font-semibold">
                 Automatically extracts and deduplicates all email addresses
               </p>
             </div>
 
             {isParsing && (
-              <p className="text-xs text-black mt-2 animate-pulse uppercase font-black">
+              <p className="text-xs text-neutral-700 mt-2 animate-pulse uppercase font-bold">
                 Parsing lead file for email addresses...
               </p>
             )}
 
             {recipients.length > 0 && (
-              <div className="mt-3 p-3 rounded-[2px] bg-[#f7f7f7] border border-black flex items-center justify-between">
+              <div className="mt-3 p-3 rounded-xl bg-neutral-50 border border-neutral-200 flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-black" />
-                  <span className="text-xs font-black text-black uppercase tracking-wide">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                  <span className="text-xs font-bold text-neutral-900 uppercase tracking-wide">
                     {recipients.length} valid lead{recipients.length > 1 ? 's' : ''} detected
                   </span>
                   {fileName && (
-                    <span className="text-[10px] text-[#666666] truncate max-w-[160px] font-medium">
+                    <span className="text-[10px] text-neutral-500 truncate max-w-[160px] font-medium">
                       ({fileName})
                     </span>
                   )}
@@ -285,7 +285,7 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                     setRecipients([]);
                     setFileName(null);
                   }}
-                  className="text-xs font-black text-rose-600 hover:text-rose-700 uppercase tracking-wider transition"
+                  className="text-xs font-bold text-rose-600 hover:text-rose-700 uppercase tracking-wider transition"
                 >
                   Clear
                 </button>
@@ -297,13 +297,13 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                 {recipients.slice(0, 6).map((rec, i) => (
                   <span
                     key={i}
-                    className="px-2 py-0.5 text-[10px] font-bold rounded-[2px] bg-white text-black border border-black truncate max-w-[200px]"
+                    className="px-2 py-0.5 text-[10px] font-semibold rounded-md bg-white text-neutral-800 border border-neutral-200 truncate max-w-[200px] shadow-sm"
                   >
                     {rec}
                   </span>
                 ))}
                 {recipients.length > 6 && (
-                  <span className="px-2 py-0.5 text-[10px] font-black rounded-[2px] bg-[#ffed00] text-black border border-black">
+                  <span className="px-2 py-0.5 text-[10px] font-bold rounded-md bg-amber-100 text-amber-900 border border-amber-200">
                     +{recipients.length - 6} more
                   </span>
                 )}
@@ -314,7 +314,7 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
           {/* Subject & Body */}
           <div className="space-y-3">
             <div>
-              <label className="block text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1.5">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                 Subject
               </label>
               <input
@@ -322,12 +322,12 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                 placeholder="High-impact partnership proposal"
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
-                className="w-full bg-white border border-black rounded-[2px] px-3.5 py-2 text-xs text-black focus:outline-none focus:bg-[#fffde6] font-medium"
+                className="w-full bg-white border border-neutral-200 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/5 rounded-lg px-3.5 py-2 text-xs text-neutral-900 focus:outline-none font-medium shadow-sm"
               />
             </div>
 
             <div>
-              <label className="block text-[10px] font-black uppercase tracking-wider text-[#666666] mb-1.5">
+              <label className="block text-[10px] font-bold uppercase tracking-wider text-neutral-500 mb-1.5">
                 Email Body
               </label>
               <textarea
@@ -335,41 +335,41 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                 placeholder="Hi there,&#10;&#10;I wanted to connect regarding our high-scale AI workflows..."
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                className="w-full bg-white border border-black rounded-[2px] p-3 text-xs text-black focus:outline-none focus:bg-[#fffde6] resize-none font-medium"
+                className="w-full bg-white border border-neutral-200 focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/5 rounded-lg p-3 text-xs text-neutral-900 focus:outline-none resize-none font-medium shadow-sm"
               />
             </div>
           </div>
 
           {/* Throttling & Scheduling Controls */}
-          <div className="p-4 rounded-[2px] bg-[#f7f7f7] border border-black space-y-3">
-            <div className="flex items-center gap-1.5 text-xs font-black text-black uppercase tracking-wider">
-              <Sliders className="w-3.5 h-3.5 text-black" />
+          <div className="p-4 rounded-xl bg-neutral-50/60 border border-neutral-200 space-y-3">
+            <div className="flex items-center gap-1.5 text-xs font-bold text-neutral-900 uppercase tracking-wider">
+              <Sliders className="w-3.5 h-3.5 text-neutral-700" />
               <span>Throughput & Scheduling Controls</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
               <div>
-                <label className="block text-[10px] text-[#666666] uppercase font-black mb-1">
+                <label className="block text-[10px] text-neutral-500 uppercase font-bold mb-1">
                   Dispatch Timing
                 </label>
                 <div className="space-y-1.5">
-                  <label className="flex items-center gap-2 text-xs text-black cursor-pointer font-bold">
+                  <label className="flex items-center gap-2 text-xs text-neutral-800 cursor-pointer font-medium">
                     <input
                       type="radio"
                       name="timing"
                       checked={startImmediately}
                       onChange={() => setStartImmediately(true)}
-                      className="accent-black"
+                      className="accent-amber-500"
                     />
                     <span>Immediately</span>
                   </label>
-                  <label className="flex items-center gap-2 text-xs text-black cursor-pointer font-bold">
+                  <label className="flex items-center gap-2 text-xs text-neutral-800 cursor-pointer font-medium">
                     <input
                       type="radio"
                       name="timing"
                       checked={!startImmediately}
                       onChange={() => setStartImmediately(false)}
-                      className="accent-black"
+                      className="accent-amber-500"
                     />
                     <span>Specific Date & Time</span>
                   </label>
@@ -378,19 +378,19 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
 
               {!startImmediately ? (
                 <div>
-                  <label className="block text-[10px] text-[#666666] uppercase font-black mb-1">
+                  <label className="block text-[10px] text-neutral-500 uppercase font-bold mb-1">
                     Start Date & Time
                   </label>
                   <input
                     type="datetime-local"
                     value={scheduledDateTime}
                     onChange={(e) => setScheduledDateTime(e.target.value)}
-                    className="w-full bg-white border border-black rounded-[2px] px-2.5 py-1.5 text-xs text-black focus:outline-none"
+                    className="w-full bg-white border border-neutral-200 focus:border-neutral-900 rounded-lg px-2.5 py-1.5 text-xs text-neutral-900 focus:outline-none shadow-sm"
                   />
                 </div>
               ) : (
                 <div>
-                  <label className="block text-[10px] text-[#666666] uppercase font-black mb-1">
+                  <label className="block text-[10px] text-neutral-500 uppercase font-bold mb-1">
                     Delay Between Sends
                   </label>
                   <div className="flex items-center gap-2">
@@ -400,15 +400,15 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                       max="60"
                       value={delaySeconds}
                       onChange={(e) => setDelaySeconds(parseInt(e.target.value, 10) || 0)}
-                      className="w-20 bg-white border border-black rounded-[2px] px-2.5 py-1.5 text-xs text-black focus:outline-none font-bold"
+                      className="w-20 bg-white border border-neutral-200 focus:border-neutral-900 rounded-lg px-2.5 py-1.5 text-xs text-neutral-900 focus:outline-none font-bold shadow-sm"
                     />
-                    <span className="text-[10px] text-[#666666] uppercase font-bold">sec (anti-throttle)</span>
+                    <span className="text-[10px] text-neutral-500 uppercase font-bold">sec (anti-throttle)</span>
                   </div>
                 </div>
               )}
 
               <div>
-                <label className="block text-[10px] text-[#666666] uppercase font-black mb-1">
+                <label className="block text-[10px] text-neutral-500 uppercase font-bold mb-1">
                   Hourly Limit / Sender
                 </label>
                 <div className="flex items-center gap-2">
@@ -418,29 +418,29 @@ export const ComposeModal: React.FC<ComposeModalProps> = ({ isOpen, onClose, onS
                     max="1000"
                     value={hourlyLimit}
                     onChange={(e) => setHourlyLimit(parseInt(e.target.value, 10) || 1)}
-                    className="w-20 bg-white border border-black rounded-[2px] px-2.5 py-1.5 text-xs text-black focus:outline-none font-bold"
+                    className="w-20 bg-white border border-neutral-200 focus:border-neutral-900 rounded-lg px-2.5 py-1.5 text-xs text-neutral-900 focus:outline-none font-bold shadow-sm"
                   />
-                  <span className="text-[10px] text-[#666666] uppercase font-bold">emails / hr</span>
+                  <span className="text-[10px] text-neutral-500 uppercase font-bold">emails / hr</span>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Footer Actions */}
-          <div className="pt-3 flex items-center justify-end gap-3 border-t border-black">
+          <div className="pt-3 flex items-center justify-end gap-3 border-t border-neutral-200">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 text-xs font-black uppercase tracking-wider text-[#666666] hover:text-black transition"
+              className="px-4 py-2 text-xs font-bold uppercase tracking-wider text-neutral-500 hover:text-neutral-900 transition rounded-lg"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSubmitting}
-              className="btn-renault-primary flex items-center gap-2 px-6 py-2.5 text-xs font-black uppercase tracking-wider disabled:opacity-50 shadow-sm"
+              className="btn-renault-primary flex items-center gap-2 px-6 py-2.5 text-xs font-bold uppercase tracking-wider disabled:opacity-50 shadow-sm rounded-lg"
             >
-              <Send className="w-3.5 h-3.5 text-black" />
+              <Send className="w-3.5 h-3.5" />
               <span>
                 {isSubmitting
                   ? 'Queueing in BullMQ...'

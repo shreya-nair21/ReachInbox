@@ -4,84 +4,94 @@
 
 @layer base {
   body {
-    @apply bg-[#ffffff] text-[#000000] antialiased overflow-x-hidden;
+    @apply bg-[#f8fafc] text-slate-900 antialiased overflow-x-hidden;
     font-family: 'Inter Tight', 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   }
 }
 
-/* Renault Scrollbar (Light) */
+/* Subtle Modern Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #f7f7f7;
+  background: #f1f5f9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c4c4c4;
-  border-radius: 2px;
+  background: #cbd5e1;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #000000;
+  background: #94a3b8;
 }
 
-/* Renault White Catalogue Surfaces */
+/* Modern Professional Surfaces */
 .renault-card {
   background: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 2px;
-  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.renault-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
 }
 
 .renault-panel {
   background: #ffffff;
-  border: 1px solid #000000;
-  border-radius: 2px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
 }
 
-/* Renault Primary Button */
+/* Primary Amber / Sunlight Button */
 .btn-renault-primary {
-  background-color: #ffed00;
-  color: #000000;
+  background-color: #fbbf24;
+  color: #0f172a;
   font-weight: 700;
-  border: 1px solid #000000;
-  border-radius: 2px;
+  border: 1px solid rgba(217, 119, 6, 0.25);
+  border-radius: 8px;
   letter-spacing: 0.14px;
-  transition: background-color 0.15s ease-in-out, transform 0.1s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease-in-out;
 }
 .btn-renault-primary:hover {
-  background-color: #e6d200;
+  background-color: #f59e0b;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
 }
 .btn-renault-primary:active {
   transform: scale(0.99);
 }
 
-/* Renault Solid Black Button */
+/* Solid Dark Button */
 .btn-renault-dark {
-  background-color: #000000;
+  background-color: #0f172a;
   color: #ffffff;
-  border: 1px solid #000000;
+  border: 1px solid #0f172a;
   font-weight: 700;
-  border-radius: 2px;
+  border-radius: 8px;
   letter-spacing: 0.14px;
-  transition: opacity 0.15s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.15s ease-in-out;
 }
 .btn-renault-dark:hover {
-  opacity: 0.88;
+  background-color: #1e293b;
+  border-color: #1e293b;
 }
 
-/* Renault Outline Button on White */
+/* Outline Button on White */
 .btn-renault-outline {
   background-color: #ffffff;
-  color: #000000;
-  border: 1px solid #000000;
+  color: #334155;
+  border: 1px solid #e2e8f0;
   font-weight: 700;
-  border-radius: 2px;
+  border-radius: 8px;
   letter-spacing: 0.14px;
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  transition: all 0.15s ease-in-out;
 }
 .btn-renault-outline:hover {
-  background-color: #ffed00;
-  border-color: #000000;
-  color: #000000;
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+  color: #0f172a;
 }
