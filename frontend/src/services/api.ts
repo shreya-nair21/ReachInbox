@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { ComposeEmailPayload, DashboardStats, EmailSchedule, Pagination, User } from '../types';
 
-const API_BASE = '/api';
+const API_BASE = import.meta.env.VITE_API_URL
+  ? `${(import.meta.env.VITE_API_URL as string).replace(/\/$/, '')}/api`
+  : '/api';
 
 const api = axios.create({
   baseURL: API_BASE,

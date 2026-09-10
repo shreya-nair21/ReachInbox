@@ -31,6 +31,17 @@ createBullBoard({
 
 app.use('/admin/queues', serverAdapter.getRouter());
 
+// Root Health Check & Service Info
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'ReachInbox Email Job Scheduler API',
+    uptime: Math.floor(process.uptime()),
+    health: '/api/health',
+    bullBoard: '/admin/queues',
+  });
+});
+
 // REST APIs
 app.use('/api', apiRoutes);
 

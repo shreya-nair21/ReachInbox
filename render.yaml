@@ -1,0 +1,53 @@
+services:
+  # Backend API & BullMQ Queue Worker
+  - type: web
+    name: reachinbox-backend
+    env: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm run start:migrate
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: reachinbox-redis
+          property: connectionString
+      - key: JWT_SECRET
+        generateValue: true
+      - key: WORKER_CONCURRENCY
+        value: 5
+      - key: MIN_DELAY_BETWEEN_EMAILS
+        value: 2000
+      - key: MAX_EMAILS_PER_HOUR_PER_SENDER
+        value: 100
+
+  # Frontend React SPA
+  - type: web
+    name: reachinbox-frontend
+    env: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: reachinbox-backend
+          property: host
+
+# Managed Redis instance for BullMQ queue
+redis:
+  - name: reachinbox-redis
+    plan: free
+    maxmemoryPolicy: noeviction
+    ipAllowList: []

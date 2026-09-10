@@ -50,3 +50,19 @@ npm run dev     # Starts Backend (:5000) and Frontend (:5173)
 - `GET /api/emails/search?q=` — Full-text search
 - `POST /api/slack/test` — Test rate-limit alert
 
+## Deployment
+
+### Option 1: Railway (All-in-One)
+1. Create a new project on [Railway](https://railway.app) from this repo.
+2. Add a **MySQL** and a **Redis** plugin from the dashboard.
+3. Deploy Backend service: Root directory `backend`, start command `npm run start:migrate`.
+4. Deploy Frontend service: Root directory `frontend`, set `VITE_API_URL` to your backend URL.
+
+### Option 2: Vercel + Render
+- **Frontend**: Deploy `frontend/` on [Vercel](https://vercel.com). Set `VITE_API_URL` to your live backend domain.
+- **Backend & Redis**: Deploy using the root `render.yaml` Blueprint or `backend/Dockerfile` on [Render](https://render.com).
+
+## Demo Video
+
+An end-to-end recording demonstrating campaign scheduling, worker queueing, rate limiting, and live Ethereal delivery is included at `ReachInbox_Demo_Walkthrough.mp4`.
+
